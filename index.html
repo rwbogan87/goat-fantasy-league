@@ -40,7 +40,7 @@
       position: fixed;
       inset: 0;
       background: url('field.jpg') center center / cover no-repeat;
-      opacity: 0.07;
+      opacity: 0.5;
       z-index: -1;
       pointer-events: none;
     }
@@ -115,11 +115,40 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 10px;
       margin-bottom: 28px;
       flex-wrap: wrap;
       padding: 0 20px;
     }
+    .filter-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .champs-banner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 8px 24px;
+    }
+    .banner-stat { display: flex; align-items: baseline; gap: 6px; }
+    .banner-val {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 1.5px;
+      color: var(--accent2);
+    }
+    .banner-label {
+      font-size: 0.68rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .banner-sep { color: var(--border); font-size: 1.1rem; }
     .controls label {
       font-size: 0.78rem;
       letter-spacing: 1px;
@@ -451,16 +480,19 @@
 <div class="nav-wrap">
   <button class="active" onclick="switchView('champs', this)">🏆 Championships</button>
   <button onclick="switchView('records', this)">📋 Records</button>
-  <button onclick="switchView('points', this)">📊 Points</button>
+  <button onclick="switchView('points', this)">🎖️ Points</button>
 </div>
 
 <!-- CONTROLS -->
 <div class="controls">
-  <label>Year:</label>
-  <select id="yearFilter" onchange="render()">
-    <option value="all">All Years</option>
-  </select>
-  <button class="toggle-retired" id="retiredToggle" onclick="toggleRetired()">Show Retired</button>
+  <div class="filter-controls" id="filter-controls" style="display:none">
+    <label>Year:</label>
+    <select id="yearFilter" onchange="render()">
+      <option value="all">All Years</option>
+    </select>
+    <button class="toggle-retired" id="retiredToggle" onclick="toggleRetired()">Show Retired</button>
+  </div>
+  <div class="champs-banner" id="champs-banner"></div>
 </div>
 
 <main>
@@ -470,6 +502,7 @@
       <h2>Championships &amp; Scoring Titles</h2>
       <span class="pill">All-Time Honors</span>
     </div>
+    <div class="legend" aria-hidden="true" style="visibility:hidden">&nbsp;</div>
     <div class="champs-grid" id="champs-grid"></div>
   </div>
 
@@ -539,7 +572,12 @@ ALL_YEARS.forEach(y => {
   opt.value = y; opt.textContent = y;
   yearSelect.appendChild(opt);
 });
-document.querySelector('.controls').style.display = 'none';
+document.getElementById('champs-banner').innerHTML =
+  `<span class="banner-stat"><span class="banner-val">${ALL_YEARS.length}</span><span class="banner-label">Seasons</span></span>` +
+  `<span class="banner-sep">·</span>` +
+  `<span class="banner-stat"><span class="banner-val">${ALL_YEARS[0]} – ${ALL_YEARS[ALL_YEARS.length - 1]}</span></span>` +
+  `<span class="banner-sep">·</span>` +
+  `<span class="banner-stat"><span class="banner-val">${CHAMPS_DATA.length}</span><span class="banner-label">Honored</span></span>`;
 
 function switchView(view, btn) {
   currentView = view;
@@ -547,8 +585,19 @@ function switchView(view, btn) {
   document.querySelectorAll('.nav-wrap button').forEach(b => b.classList.remove('active'));
   document.getElementById('view-' + view).classList.add('active');
   btn.classList.add('active');
-  document.querySelector('.controls').style.display = view === 'champs' ? 'none' : 'flex';
+  document.getElementById('filter-controls').style.display = view === 'champs' ? 'none' : 'flex';
+  document.getElementById('champs-banner').style.display = view === 'champs' ? 'flex' : 'none';
   render();
+}
+
+function applyRetiredVisibility() {
+  ['points-table', 'records-table'].forEach(id => {
+    const table = document.getElementById(id);
+    if (!table) return;
+    table.querySelectorAll('tr.retired-row').forEach(row => {
+      row.style.display = showRetired ? '' : 'none';
+    });
+  });
 }
 
 function toggleRetired() {
@@ -556,7 +605,7 @@ function toggleRetired() {
   const btn = document.getElementById('retiredToggle');
   btn.textContent = showRetired ? 'Hide Retired' : 'Show Retired';
   btn.classList.toggle('on', showRetired);
-  render();
+  applyRetiredVisibility();
 }
 
 function getSelectedYears() {
@@ -567,7 +616,7 @@ function getSelectedYears() {
 // ── RENDER POINTS TABLE ──
 function renderPoints() {
   const years = getSelectedYears();
-  const data = POINTS_DATA.filter(p => showRetired || p.status === 'Active');
+  const data = POINTS_DATA;
   const table = document.getElementById('points-table');
   table.innerHTML = '';
 
@@ -640,12 +689,13 @@ function renderPoints() {
     tbody.appendChild(tr);
   });
   table.appendChild(tbody);
+  applyRetiredVisibility();
 }
 
 // ── RENDER RECORDS TABLE ──
 function renderRecords() {
   const years = getSelectedYears();
-  const data = RECORDS_DATA.filter(p => showRetired || p.status === 'Active');
+  const data = RECORDS_DATA;
   const table = document.getElementById('records-table');
   table.innerHTML = '';
 
@@ -713,6 +763,7 @@ function renderRecords() {
     tbody.appendChild(tr);
   });
   table.appendChild(tbody);
+  applyRetiredVisibility();
 }
 
 // ── RENDER CHAMPS ──
@@ -744,7 +795,7 @@ function renderChamps() {
     ).join('');
 
     const scoreBadges = player.scoringTitles.sort().map(y =>
-      `<span class="champ-badge scoring">📊 ${y}</span>`
+      `<span class="champ-badge scoring">🎖️ ${y}</span>`
     ).join('');
 
     const badgeSection = (champBadges || scoreBadges)
