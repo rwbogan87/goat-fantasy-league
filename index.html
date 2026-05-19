@@ -571,35 +571,43 @@ function renderPoints() {
   const table = document.getElementById('points-table');
   table.innerHTML = '';
 
+  // Header
   const thead = document.createElement('thead');
 
-  // Year row: status | Player | CAREER (2 cols) | years...
+  // Year row
   const yearRow = document.createElement('tr');
   yearRow.className = 'year-row';
-  yearRow.innerHTML = `<th></th><th>Player</th>
-    <th colspan="2" style="color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;text-align:center;border-right:1px solid var(--border)">CAREER</th>`;
+  yearRow.innerHTML = `<th></th><th>Player</th>`;
   years.forEach(y => {
     const th = document.createElement('th');
     th.colSpan = 2;
     th.textContent = y;
     yearRow.appendChild(th);
   });
+  // Totals header
+  const totTh = document.createElement('th');
+  totTh.colSpan = 2;
+  totTh.className = 'totals-spacer';
+  totTh.textContent = 'CAREER';
+  totTh.style.cssText = 'color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:1rem;letter-spacing:2px;text-align:center;';
+  yearRow.appendChild(totTh);
   thead.appendChild(yearRow);
 
   // Sub row
   const subRow = document.createElement('tr');
   subRow.className = 'sub-row';
-  subRow.innerHTML = `<th></th><th class="name-col">Name</th>
-    <th style="color:var(--gold)">PF</th>
-    <th style="color:var(--muted);border-right:1px solid var(--border)">PA</th>`;
+  subRow.innerHTML = `<th></th><th class="name-col">Name</th>`;
   years.forEach(() => {
     subRow.innerHTML += `<th>PF</th><th>PA</th>`;
   });
+  subRow.innerHTML += `<th class="totals-spacer" style="color:var(--gold)">PF</th><th style="color:var(--muted)">PA</th>`;
   thead.appendChild(subRow);
   table.appendChild(thead);
 
+  // Body
   const tbody = document.createElement('tbody');
   data.forEach(player => {
+    // Only show if they have data in selected years
     const hasData = years.some(y => player.seasons[y]);
     if (!hasData && years.length < ALL_YEARS.length) return;
 
@@ -607,30 +615,26 @@ function renderPoints() {
     if (player.status === 'Retired') tr.classList.add('retired-row');
     if (player.name === 'Branden Irvin') tr.classList.add('memoriam-row');
 
-    // Pre-compute totals across ALL seasons (not just filtered years)
     let totalFor = 0, totalAgainst = 0;
-    ALL_YEARS.forEach(y => {
-      const s = player.seasons[y];
-      if (s) {
-        totalFor += parseFloat(s.for) || 0;
-        totalAgainst += parseFloat(s.against) || 0;
-      }
-    });
 
     let html = `<td class="status-cell"><span class="status-dot ${player.status === 'Retired' ? 'retired' : ''}"></span></td>`;
     html += `<td class="name-cell">${player.name}</td>`;
-    html += `<td class="total-pts">${totalFor.toFixed(1)}</td>`;
-    html += `<td class="total-l" style="border-right:1px solid var(--border)">${totalAgainst.toFixed(1)}</td>`;
 
     years.forEach(y => {
       const s = player.seasons[y];
       if (s) {
+        totalFor += parseFloat(s.for) || 0;
+        totalAgainst += parseFloat(s.against) || 0;
         html += `<td class="for-val">${parseFloat(s.for).toFixed(1)}</td>`;
         html += `<td class="against-val">${parseFloat(s.against).toFixed(1)}</td>`;
       } else {
         html += `<td class="empty">—</td><td class="empty">—</td>`;
       }
     });
+
+    // Totals
+    html += `<td class="total-pts totals-spacer">${totalFor.toFixed(1)}</td>`;
+    html += `<td class="total-l">${totalAgainst.toFixed(1)}</td>`;
 
     tr.innerHTML = html;
     tbody.appendChild(tr);
@@ -647,29 +651,32 @@ function renderRecords() {
 
   const thead = document.createElement('thead');
 
-  // Year row: status | Player | CAREER (3 cols) | years...
+  // Year row
   const yearRow = document.createElement('tr');
   yearRow.className = 'year-row';
-  yearRow.innerHTML = `<th></th><th>Player</th>
-    <th colspan="3" style="color:var(--gold);font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;text-align:center;border-right:1px solid var(--border)">CAREER</th>`;
+  yearRow.innerHTML = `<th></th><th>Player</th>`;
   years.forEach(y => {
     const th = document.createElement('th');
     th.colSpan = 2;
     th.textContent = y;
     yearRow.appendChild(th);
   });
+  const totTh = document.createElement('th');
+  totTh.colSpan = 3;
+  totTh.className = 'totals-spacer';
+  totTh.textContent = 'CAREER';
+  totTh.style.cssText = 'color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:1rem;letter-spacing:2px;text-align:center;';
+  yearRow.appendChild(totTh);
   thead.appendChild(yearRow);
 
   // Sub row
   const subRow = document.createElement('tr');
   subRow.className = 'sub-row';
-  subRow.innerHTML = `<th></th><th class="name-col">Name</th>
-    <th style="color:var(--green)">W</th>
-    <th style="color:#f87171">L</th>
-    <th style="color:var(--gold);border-right:1px solid var(--border)">Win%</th>`;
+  subRow.innerHTML = `<th></th><th class="name-col">Name</th>`;
   years.forEach(() => {
     subRow.innerHTML += `<th>W</th><th>L</th>`;
   });
+  subRow.innerHTML += `<th class="totals-spacer" style="color:var(--green)">W</th><th style="color:#f87171">L</th><th style="color:var(--gold)">Win%</th>`;
   thead.appendChild(subRow);
   table.appendChild(thead);
 
@@ -682,32 +689,25 @@ function renderRecords() {
     if (player.status === 'Retired') tr.classList.add('retired-row');
     if (player.name === 'Branden Irvin') tr.classList.add('memoriam-row');
 
-    // Pre-compute totals across ALL seasons
     let totalW = 0, totalL = 0;
-    ALL_YEARS.forEach(y => {
-      const s = player.seasons[y];
-      if (s) {
-        totalW += parseInt(s.win) || 0;
-        totalL += parseInt(s.loss) || 0;
-      }
-    });
-
-    const pct = totalW + totalL > 0 ? ((totalW / (totalW + totalL)) * 100).toFixed(1) + '%' : '—';
-
     let html = `<td class="status-cell"><span class="status-dot ${player.status === 'Retired' ? 'retired' : ''}"></span></td>`;
     html += `<td class="name-cell">${player.name}</td>`;
-    html += `<td class="total-w">${totalW}</td>`;
-    html += `<td class="total-l">${totalL}</td>`;
-    html += `<td class="total-pts" style="border-right:1px solid var(--border)">${pct}</td>`;
 
     years.forEach(y => {
       const s = player.seasons[y];
       if (s) {
+        totalW += parseInt(s.win) || 0;
+        totalL += parseInt(s.loss) || 0;
         html += `<td class="win-val">${s.win}</td><td class="loss-val">${s.loss}</td>`;
       } else {
         html += `<td class="empty">—</td><td class="empty">—</td>`;
       }
     });
+
+    const pct = totalW + totalL > 0 ? ((totalW / (totalW + totalL)) * 100).toFixed(1) : '—';
+    html += `<td class="total-w totals-spacer">${totalW}</td>`;
+    html += `<td class="total-l">${totalL}</td>`;
+    html += `<td class="total-pts">${pct !== '—' ? pct + '%' : '—'}</td>`;
 
     tr.innerHTML = html;
     tbody.appendChild(tr);
