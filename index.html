@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Fantasy Football Team</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="background.css">
+</head>
+<body>
+  <div class="container">
+    <h1>My Fantasy Football Roster & Standings</h1>
+    
+    <div class="nav">
+      <button onclick="showSheet('points', this)" class="active">Points</button>
+      <button onclick="showSheet('records', this)">Records</button>
+    </div>
+    
+    <div class="table-wrapper">
+      <div id="points-table" class="sheet active"></div>
+    </div>
+    <div class="table-wrapper" style="display: none;">
+      <div id="records-table" class="sheet"></div>
+    </div>
+  </div>
+
+  <script>
+    function showSheet(sheet, button) {
+      // Hide all table wrappers
+      document.querySelectorAll('.table-wrapper').forEach(w => w.style.display = 'none');
+      // Deactivate all buttons
+      document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+      // Deactivate all sheets
+      document.querySelectorAll('.sheet').forEach(s => s.classList.remove('active'));
+
+      // Show the correct wrapper and activate the sheet
+      const targetSheet = sheet === 'points' 
+        ? document.querySelector('#points-table') 
+        : document.querySelector('#records-table');
+      
+      targetSheet.parentElement.style.display = 'block';
+      targetSheet.classList.add('active');
+      button.classList.add('active');
+    }
+
+    async function loadCSV(url, containerId) {
+      const response = await fetch(url);
+      const text = await response.text();
+      let rows = text.trim().split('\n').map(row => row.split(','));
+
+      // Remove completely empty rows
+      rows = rows.filter(row => row.some(cell => cell.trim() !== ''));
+
+      // Determine non-empty columns
+      const colCount = rows[0] ? rows[0].length : 0;
+      const nonEmptyCols = [];
+      for (let c = 0; c < colCount; c++) {
+        if (rows.some(row => (row[c] || '').trim() !== '')) {
+          nonEmptyCols.push(c);
+        }
+      }
+
+      // Filter columns
+      rows = rows.map(row => nonEmptyCols.map(c => row[c] || ''));
+
+      const table = document.createElement('table');
+      rows.forEach((row, index) => {
+        const tr = document.createElement('tr');
+        row.forEach(cell => {
+          const el = document.createElement(index === 0 ? 'th' : 'td');
+          el.textContent = cell.trim().replace(/^"|"$/g, '');
+          tr.appendChild(el);
+        });
+        table.appendChild(tr);
+      });
+
+      document.getElementById(containerId).appendChild(table);
+    }
+
+    loadCSV('goatPoints.csv', 'points-table');
+    loadCSV('goatRecords.csv', 'records-table');
+  </script>
+</body>
+</html>
