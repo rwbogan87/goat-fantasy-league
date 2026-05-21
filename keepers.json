@@ -1,61 +1,61 @@
 [
   {
     "owner": "Caleb Christensen",
-    "teamName": "Caleb's Crew",
     "keepers": [
-      { "name": "Justin Jefferson", "espnId": "3915", "firstKeptYear": "2023" },
-      { "name": "Dalvin Cook", "espnId": "15883", "firstKeptYear": "2020" }
+      { "name": "Jahmyr Gibbs", "firstKeptYear": "2025", "photoUrl": "Gibbs.jpg" },
+      { "name": "Justin Jefferson", "firstKeptYear": "2020" },
+      { "name": "Breece Hall", "firstKeptYear": "2020" }
     ]
   },
   {
     "owner": "Jon Steele",
-    "teamName": "Steele Force",
     "keepers": [
-      { "name": "Patrick Mahomes", "espnId": "3139478", "firstKeptYear": "2014" },
-      { "name": "Christian McCaffrey", "espnId": "197219", "firstKeptYear": "2017" },
-      { "name": "Tyreek Hill", "espnId": "3917", "firstKeptYear": "2022" }
+      { "name": "Brock Bowers", "firstKeptYear": "2024" },
+      { "name": "CeeDee Lamb", "firstKeptYear": "2024" },
+      { "name": "Tetairoa McMillan", "firstKeptYear": "2025" }
     ]
   },
   {
     "owner": "Ryan Bogan",
-    "teamName": "Bogan Ballers",
     "keepers": [
-      { "name": "Aaron Rodgers", "espnId": "8439", "firstKeptYear": "2014" }
+      { "name": "Ja'Marr Chase", "firstKeptYear": "2025" },
+      { "name": "Jaxon Smith-Njigba", "firstKeptYear": "2025" },
+      { "name": "Puka Nacua", "firstKeptYear": "2025" }
     ]
   },
   {
     "owner": "Branden Irvin",
-    "teamName": "Irvin Dynasty",
-    "keepers": [
-      { "name": "Stefon Diggs", "espnId": "14823", "firstKeptYear": "2018" },
-      { "name": "Derrick Henry", "espnId": "5959", "firstKeptYear": "2019" }
-    ]
+    "keepers": []
   },
   {
     "owner": "Alex Decaudin",
-    "teamName": "Decaudin Dynasty",
     "keepers": [
-      { "name": "Lamar Jackson", "espnId": "3041926", "firstKeptYear": "2020" }
+      { "name": "Ashton Jeanty", "firstKeptYear": "2023" },
+      { "name": "Marvin Harrison Jr.", "firstKeptYear": "2023" }
     ]
   },
   {
     "owner": "Rich Christensen",
-    "teamName": "Rich's Realm",
-    "keepers": []
+    "keepers": [
+      { "name": "Amon-Ra St. Brown", "firstKeptYear": "2023" }, 
+      { "name": "Rashee Rice", "firstKeptYear": "2023" } ,
+      { "name": "Derrick Henry", "firstKeptYear": "2023" } 
+    ]
   },
   {
     "owner": "Alec Christensen",
-    "teamName": "Alec's Army",
-    "keepers": []
+    "keepers": [
+      { "name": "Jonathan Taylor", "firstKeptYear": "2023" }, 
+      { "name": "Trey Mcbride", "firstKeptYear": "2023" },
+      { "name": "Emeka Egbuka", "firstKeptYear": "2023" }
+    ]
   },
   {
     "owner": "Josh Petriko",
-    "teamName": "Petriko Pride",
     "keepers": []
   },
   {
     "owner": "Kyle Sanchez",
-    "teamName": "Sanchez Squad",
     "keepers": []
   }
 ]
