@@ -1,0 +1,60 @@
+[
+  {
+    "owner": "Caleb Christensen",
+    "keepers": [
+      { "name": "Jahmyr Gibbs", "firstKeptYear": "", "photoUrl": "Gibbs.jpg" },
+      { "name": "Justin Jefferson", "firstKeptYear": "" }
+    ]
+  },
+  { 
+    "owner": "Jon Steele",
+    "keepers": [
+      { "name": "Brock Bowers", "firstKeptYear": "" },
+      { "name": "CeeDee Lamb", "firstKeptYear": "" },
+      { "name": "Tetairoa McMillan", "firstKeptYear": "" }
+    ]
+  },
+  {
+    "owner": "Ryan Bogan",
+    "keepers": [
+      { "name": "Ja'Marr Chase", "firstKeptYear": "" },
+      { "name": "Jaxon Smith-Njigba", "firstKeptYear": "" },
+      { "name": "Puka Nacua", "firstKeptYear": "" }
+    ]
+  },
+  {
+    "owner": "Branden Irvin",
+    "keepers": []
+  },
+  {
+    "owner": "Alex Decaudin",
+    "keepers": [
+      { "name": "Ashton Jeanty", "firstKeptYear": "" },
+      { "name": "Marvin Harrison Jr.", "firstKeptYear": "" }
+    ]
+  },
+  {
+    "owner": "Rich Christensen",
+    "keepers": [
+      { "name": "Amon-Ra St. Brown", "firstKeptYear": "" }, 
+      { "name": "Rashee Rice", "firstKeptYear": "" } ,
+      { "name": "Derrick Henry", "firstKeptYear": "" } 
+    ]
+  },
+  {
+    "owner": "Alec Christensen",
+    "keepers": [
+      { "name": "Jonathan Taylor", "firstKeptYear": "" }, 
+      { "name": "Trey Mcbride", "firstKeptYear": "" },
+      { "name": "Emeka Egbuka", "firstKeptYear": "" }
+    ]
+  },
+  {
+    "owner": "Josh Petriko",
+    "keepers": []
+  },
+  {
+    "owner": "Kyle Sanchez",
+    "keepers": []
+  }
+]
