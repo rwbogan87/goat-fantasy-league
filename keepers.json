@@ -2,25 +2,24 @@
   {
     "owner": "Caleb Christensen",
     "keepers": [
-      { "name": "Jahmyr Gibbs", "firstKeptYear": "2025", "photoUrl": "Gibbs.jpg" },
-      { "name": "Justin Jefferson", "firstKeptYear": "2020" },
-      { "name": "Breece Hall", "firstKeptYear": "2020" }
+      { "name": "Jahmyr Gibbs", "firstKeptYear": "", "photoUrl": "Gibbs.jpg" },
+      { "name": "Justin Jefferson", "firstKeptYear": "" }
     ]
   },
-  {
+  { 
     "owner": "Jon Steele",
     "keepers": [
-      { "name": "Brock Bowers", "firstKeptYear": "2024" },
-      { "name": "CeeDee Lamb", "firstKeptYear": "2024" },
-      { "name": "Tetairoa McMillan", "firstKeptYear": "2025" }
+      { "name": "Brock Bowers", "firstKeptYear": "" },
+      { "name": "CeeDee Lamb", "firstKeptYear": "" },
+      { "name": "Tetairoa McMillan", "firstKeptYear": "" }
     ]
   },
   {
     "owner": "Ryan Bogan",
     "keepers": [
-      { "name": "Ja'Marr Chase", "firstKeptYear": "2025" },
-      { "name": "Jaxon Smith-Njigba", "firstKeptYear": "2025" },
-      { "name": "Puka Nacua", "firstKeptYear": "2025" }
+      { "name": "Ja'Marr Chase", "firstKeptYear": "" },
+      { "name": "Jaxon Smith-Njigba", "firstKeptYear": "" },
+      { "name": "Puka Nacua", "firstKeptYear": "" }
     ]
   },
   {
@@ -30,24 +29,24 @@
   {
     "owner": "Alex Decaudin",
     "keepers": [
-      { "name": "Ashton Jeanty", "firstKeptYear": "2023" },
-      { "name": "Marvin Harrison Jr.", "firstKeptYear": "2023" }
+      { "name": "Ashton Jeanty", "firstKeptYear": "" },
+      { "name": "Marvin Harrison Jr.", "firstKeptYear": "" }
     ]
   },
   {
     "owner": "Rich Christensen",
     "keepers": [
-      { "name": "Amon-Ra St. Brown", "firstKeptYear": "2023" }, 
-      { "name": "Rashee Rice", "firstKeptYear": "2023" } ,
-      { "name": "Derrick Henry", "firstKeptYear": "2023" } 
+      { "name": "Amon-Ra St. Brown", "firstKeptYear": "" }, 
+      { "name": "Rashee Rice", "firstKeptYear": "" } ,
+      { "name": "Derrick Henry", "firstKeptYear": "" } 
     ]
   },
   {
     "owner": "Alec Christensen",
     "keepers": [
-      { "name": "Jonathan Taylor", "firstKeptYear": "2023" }, 
-      { "name": "Trey Mcbride", "firstKeptYear": "2023" },
-      { "name": "Emeka Egbuka", "firstKeptYear": "2023" }
+      { "name": "Jonathan Taylor", "firstKeptYear": "" }, 
+      { "name": "Trey Mcbride", "firstKeptYear": "" },
+      { "name": "Emeka Egbuka", "firstKeptYear": "" }
     ]
   },
   {
