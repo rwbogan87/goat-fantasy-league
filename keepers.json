@@ -1,6 +1,7 @@
 [
   {
     "owner": "Caleb Christensen",
+    "team": "The Empire",
     "keepers": [
       { "name": "Jahmyr Gibbs", "firstKeptYear": "", "photoUrl": "Gibbs.jpg" },
       { "name": "Justin Jefferson", "firstKeptYear": "" }
@@ -8,6 +9,7 @@
   },
   { 
     "owner": "Jon Steele",
+    "team": "The Backdoor Covers",
     "keepers": [
       { "name": "Brock Bowers", "firstKeptYear": "" },
       { "name": "CeeDee Lamb", "firstKeptYear": "" },
@@ -16,6 +18,7 @@
   },
   {
     "owner": "Ryan Bogan",
+    "team": "War Daddies",
     "keepers": [
       { "name": "Ja'Marr Chase", "firstKeptYear": "" },
       { "name": "Jaxon Smith-Njigba", "firstKeptYear": "" },
@@ -24,10 +27,12 @@
   },
   {
     "owner": "Branden Irvin",
+    "team": "Retired",
     "keepers": []
   },
   {
     "owner": "Alex Decaudin",
+    "team": "Pete Davidson's Father",
     "keepers": [
       { "name": "Ashton Jeanty", "firstKeptYear": "" },
       { "name": "Marvin Harrison Jr.", "firstKeptYear": "" }
@@ -35,6 +40,7 @@
   },
   {
     "owner": "Rich Christensen",
+    "team": "Trust Me I'm a Doctor",
     "keepers": [
       { "name": "Amon-Ra St. Brown", "firstKeptYear": "" }, 
       { "name": "Rashee Rice", "firstKeptYear": "" } ,
@@ -43,6 +49,7 @@
   },
   {
     "owner": "Alec Christensen",
+    "team": "Egbukkake",
     "keepers": [
       { "name": "Jonathan Taylor", "firstKeptYear": "" }, 
       { "name": "Trey Mcbride", "firstKeptYear": "" },
@@ -51,10 +58,12 @@
   },
   {
     "owner": "Josh Petriko",
+    "team": "Retired",
     "keepers": []
   },
   {
     "owner": "Kyle Sanchez",
+    "team": "Retired",
     "keepers": []
   }
 ]
