@@ -358,6 +358,7 @@
       flex-direction: column;
       gap: 16px;
       position: relative;
+      min-height: 420px;
     }
     .champ-card.in-memoriam {
       border-color: rgba(245,158,11,0.45);
@@ -400,10 +401,94 @@
       font-size: 1rem;
       color: var(--text);
     }
+    .keeper-strip {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      min-height: 110px;
+      align-items: flex-start;
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+    .keeper-item {
+      width: 82px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      outline: none;
+    }
+    .keeper-item:focus-visible {
+      outline: 2px solid rgba(96,165,250,0.85);
+      outline-offset: 4px;
+    }
+    .keeper-photo {
+      width: 82px;
+      height: 82px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(15,23,42,0.85);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+      display: grid;
+      place-items: center;
+    }
+    .keeper-photo.keeper-photo-empty {
+      border-color: rgba(100,116,139,0.65);
+      background: rgba(59,130,246,0.05);
+      box-shadow: none;
+    }
+    .keeper-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .keeper-name {
+      font-size: 0.72rem;
+      line-height: 1.1;
+      color: var(--text);
+      text-align: center;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: opacity 0.18s ease, max-height 0.18s ease;
+    }
+    .keeper-year {
+      font-size: 0.58rem;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+    }
+    .keeper-item:hover .keeper-name,
+    .keeper-item:focus-within .keeper-name {
+      opacity: 1;
+      max-height: 2rem;
+    }
+    .keeper-placeholder {
+      min-height: 82px;
+      width: 82px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      border: 1px dashed rgba(100,116,139,0.65);
+      background: rgba(59,130,246,0.05);
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      text-align: center;
+      padding: 10px;
+    }
     .champ-badge-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      min-height: 64px;
+      align-items: flex-start;
+      justify-content: center;
     }
     .champ-badge {
       display: inline-flex;
@@ -428,6 +513,10 @@
       color: var(--muted);
       font-size: 0.82rem;
       font-style: italic;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .champ-totals {
       display: flex;
@@ -560,6 +649,27 @@ const CHAMPS_DATA = [
   { name: "Josh Petriko",       championships: ["2022"],                      scoringTitles: ["2019"] },
   { name: "Kyle Sanchez",       championships: ["2012"],                      scoringTitles: [] },
 ];
+
+const keepersData = [];
+
+async function loadKeepers() {
+  try {
+    const response = await fetch('keepers.json');
+    if (!response.ok) throw new Error('Could not load keepers.json');
+    const json = await response.json();
+    if (Array.isArray(json)) keepersData.push(...json);
+  } catch (error) {
+    console.warn('Keeper data unavailable:', error);
+  }
+}
+
+function getKeeperPhotoUrl(espnId) {
+  return `https://a.espncdn.com/i/headshots/nfl/players/full/${espnId}.png`;
+}
+
+function getKeeperFallbackUrl() {
+  return 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="82" height="82" viewBox="0 0 82 82"%3E%3Crect width="82" height="82" fill="%2314252d"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="10" fill="%237a9dbf"%3ENo Photo%3C/text%3E%3C/svg%3E';
+}
 
 // ── STATE ──
 let currentView = 'champs';
@@ -802,6 +912,32 @@ function renderChamps() {
       ? `<div class="champ-badge-row">${champBadges}${scoreBadges}</div>`
       : `<div class="champ-empty">No titles yet</div>`;
 
+    const keeperInfo = keepersData.find(k => k.owner === player.name) || { keepers: [] };
+    const keeperItems = keeperInfo.keepers.slice(0, 3).map(keeper => `
+      <div class="keeper-item" tabindex="0">
+        <div class="keeper-photo">
+          <img src="${getKeeperPhotoUrl(keeper.espnId)}" alt="${keeper.name}" loading="lazy"
+               onerror="this.onerror=null; this.src='${getKeeperFallbackUrl()}'; this.parentElement.classList.add('keeper-photo-empty'); console.warn('Keeper photo failed for ${keeper.name}');" />
+        </div>
+        <div class="keeper-name">${keeper.name}</div>
+        <div class="keeper-year">${keeper.firstKeptYear}</div>
+      </div>
+    `);
+
+    while (keeperItems.length < 3) {
+      keeperItems.push(`
+        <div class="keeper-item" tabindex="0">
+          <div class="keeper-photo keeper-photo-empty">
+            <span class="keeper-placeholder">None</span>
+          </div>
+          <div class="keeper-name">None</div>
+          <div class="keeper-year">—</div>
+        </div>
+      `);
+    }
+
+    const keeperSection = `<div class="keeper-strip">${keeperItems.join('')}</div>`;
+
     const totals = `
       <div class="champ-totals">
         <div class="champ-stat">
@@ -814,9 +950,14 @@ function renderChamps() {
         </div>
       </div>`;
 
-    card.innerHTML = honorMark + nameLine + badgeSection + totals;
+    card.innerHTML = honorMark + nameLine + badgeSection + keeperSection + totals;
     grid.appendChild(card);
   });
+}
+
+async function init() {
+  await loadKeepers();
+  render();
 }
 
 function render() {
@@ -825,7 +966,7 @@ function render() {
   else renderRecords();
 }
 
-render();
+init();
 </script>
 </body>
 </html>
