@@ -80,28 +80,172 @@
 </main>
 
 <script>
-const ALL_YEARS = ["2013","2014","2015","2016","2017","2018","2019","2020","2021","2022","2023","2024","2025"];
+let allYears = [];
 
-const POINTS_DATA = [{"status":"Active","name":"Caleb Christensen","seasons":{"2013":{"for":"1316.28","against":"1183.08"},"2014":{"for":"1141.48","against":"1252.18"},"2015":{"for":"1203.12","against":"1044.75"},"2016":{"for":"1335.64","against":"1307.5"},"2017":{"for":"1252.88","against":"1281.18"},"2018":{"for":"1548","against":"1739.94"},"2019":{"for":"1632.92","against":"1527.02"},"2020":{"for":"1249.62","against":"1564.42"},"2021":{"for":"1754.9","against":"1533.02"},"2022":{"for":"1823.68","against":"1692.14"},"2023":{"for":"1696.28","against":"1727.38"},"2024":{"for":"1982","against":"1622.88"},"2025":{"for":"1809.02","against":"1773.88"}}},{"status":"Active","name":"Jon Steele","seasons":{"2013":{"for":"1128.88","against":"1406.82"},"2014":{"for":"1497.76","against":"1324.24"},"2015":{"for":"1399.62","against":"1084.2"},"2016":{"for":"1371.8","against":"1274.26"},"2017":{"for":"1447.22","against":"1212.38"},"2018":{"for":"1775.14","against":"1688.86"},"2019":{"for":"1448.58","against":"1485.96"},"2020":{"for":"1530.5","against":"1489.6"},"2021":{"for":"1602.24","against":"1717.76"},"2022":{"for":"1528.28","against":"1902.24"},"2023":{"for":"1786.6","against":"1712.54"},"2024":{"for":"1855.4","against":"1746.56"},"2025":{"for":"1693.8","against":"1591.44"}}},{"status":"Active","name":"Ryan Bogan","seasons":{"2013":{"for":"1033.72","against":"1368.56"},"2014":{"for":"1450.12","against":"1322.48"},"2015":{"for":"1200.28","against":"1133.32"},"2016":{"for":"1445.32","against":"1388.58"},"2017":{"for":"1293.72","against":"1322.34"},"2018":{"for":"1463.44","against":"1557.86"},"2019":{"for":"1514.8","against":"1594.08"},"2020":{"for":"1748.32","against":"1465.36"},"2021":{"for":"1910.38","against":"1594.08"},"2022":{"for":"1721.04","against":"1677.14"},"2023":{"for":"1656.54","against":"1679.62"},"2024":{"for":"1785.62","against":"1744.64"},"2025":{"for":"1856.2","against":"1757.6"}}},{"status":"Active","name":"Alex Decaudin","seasons":{"2015":{"for":"1108.94","against":"1118.9"},"2016":{"for":"1273.22","against":"1224.46"},"2017":{"for":"1310.94","against":"1132.6"},"2018":{"for":"1625.44","against":"1596.22"},"2019":{"for":"1531.42","against":"1479.18"},"2020":{"for":"1588.6","against":"1522.28"},"2021":{"for":"1539.96","against":"1648.52"},"2022":{"for":"1754.32","against":"1558.1"},"2023":{"for":"1621.9","against":"1603.36"},"2024":{"for":"1561.96","against":"1806.14"},"2025":{"for":"1578.6","against":"1725.66"}}},{"status":"Active","name":"Rich Christensen","seasons":{"2013":{"for":"1236.9","against":"1238.62"},"2014":{"for":"1333.26","against":"1245.21"},"2015":{"for":"1191.3","against":"1177.44"},"2016":{"for":"1200.88","against":"1324.4"},"2017":{"for":"1407.72","against":"1256.88"},"2018":{"for":"1456.12","against":"1575.54"},"2019":{"for":"1372.24","against":"1475.06"},"2020":{"for":"1464.12","against":"1509.3"},"2021":{"for":"1798.02","against":"1548.44"},"2022":{"for":"1838.62","against":"1676.08"},"2023":{"for":"1747.82","against":"1751.56"},"2024":{"for":"1895.56","against":"1768.96"},"2025":{"for":"1832.2","against":"1845.88"}}},{"status":"Active","name":"Alec Christensen","seasons":{"2013":{"for":"1512.08","against":"1239.22"},"2014":{"for":"1190.62","against":"1414.79"},"2015":{"for":"978.82","against":"1283.3"},"2016":{"for":"1346.34","against":"1328.06"},"2017":{"for":"1285.46","against":"1197.86"},"2018":{"for":"1427.16","against":"1535.4"},"2019":{"for":"1387.26","against":"1601.22"},"2020":{"for":"1518.3","against":"1556.56"},"2021":{"for":"1534.98","against":"1685.64"},"2022":{"for":"1762.78","against":"1823.64"},"2023":{"for":"1671.06","against":"1788.08"},"2024":{"for":"1721.56","against":"1769.24"},"2025":{"for":"1789.32","against":"1729.04"}}},{"status":"Active","name":"Jay Jennings","seasons":{"2017":{"for":"1157.72","against":"1275.82"},"2018":{"for":"1470.32","against":"1522.56"},"2019":{"for":"1494.86","against":"1641.82"},"2020":{"for":"1490.7","against":"1469.44"},"2021":{"for":"1485.54","against":"1664.26"},"2022":{"for":"1676.74","against":"1824.68"},"2023":{"for":"1656.2","against":"1849.52"},"2024":{"for":"1842.04","against":"1693.84"},"2025":{"for":"1746.92","against":"1758.08"}}},{"status":"Active","name":"Corey Potts","seasons":{"2023":{"for":"1798.3","against":"1617.84"},"2024":{"for":"1653.8","against":"1709.92"},"2025":{"for":"1557.26","against":"1816.4"}}},{"status":"Active","name":"Jacob Salathe","seasons":{"2024":{"for":"1551.42","against":"1800.08"},"2025":{"for":"1836.3","against":"1622.34"}}},{"status":"Active","name":"Jon Latzke","seasons":{"2025":{"for":"1685.2","against":"1764.5"}}},{"status":"Retired","name":"Branden Irvin","seasons":{"2014":{"for":"1269.83","against":"1435.35"},"2015":{"for":"989.3","against":"1148.08"},"2017":{"for":"1125.76","against":"1281.6"},"2018":{"for":"1853.58","against":"1492.44"},"2019":{"for":"1427.58","against":"1469.18"},"2020":{"for":"1452.78","against":"1509.74"},"2021":{"for":"1625.86","against":"1696.04"},"2022":{"for":"1770.84","against":"1707.02"},"2023":{"for":"1907.74","against":"1647.14"},"2024":{"for":"1690.66","against":"1877.76"}}},{"status":"Retired","name":"Rob Clark","seasons":{"2016":{"for":"1426.26","against":"1327.3"},"2017":{"for":"1177.56","against":"1324.8"},"2018":{"for":"1710.94","against":"1523.64"}}},{"status":"Retired","name":"Christian Morrison","seasons":{"2016":{"for":"1210.58","against":"1226.58"}}},{"status":"Retired","name":"Kelly Williams","seasons":{"2016":{"for":"1004.4","against":"1335.48"}}},{"status":"Retired","name":"Nathan Bogan","seasons":{"2014":{"for":"1223.1","against":"1211.87"},"2016":{"for":"1296.22","against":"1174.04"},"2017":{"for":"1124.06","against":"1297.58"},"2018":{"for":"1485.36","against":"1583.04"},"2019":{"for":"1439.48","against":"1273.98"},"2020":{"for":"1531","against":"1369.6"},"2021":{"for":"1682.28","against":"1761.68"},"2022":{"for":"1588.86","against":"1621.84"}}},{"status":"Retired","name":"Josh Petriko","seasons":{"2019":{"for":"1745.24","against":"1446.88"},"2020":{"for":"1354.68","against":"1472.32"},"2021":{"for":"1672.32","against":"1757.04"},"2022":{"for":"1661.4","against":"1643.68"}}}];
-
-const RECORDS_DATA = [{"status":"Active","name":"Caleb Christensen","seasons":{"2013":{"win":"9","loss":"4"},"2014":{"win":"4","loss":"9"},"2015":{"win":"10","loss":"3"},"2016":{"win":"7","loss":"6"},"2017":{"win":"6","loss":"7"},"2018":{"win":"7","loss":"6"},"2019":{"win":"8","loss":"5"},"2020":{"win":"1","loss":"12"},"2021":{"win":"11","loss":"3"},"2022":{"win":"7","loss":"7"},"2023":{"win":"6","loss":"8"},"2024":{"win":"11","loss":"3"},"2025":{"win":"7","loss":"7"}}},{"status":"Active","name":"Jon Steele","seasons":{"2013":{"win":"4","loss":"9"},"2014":{"win":"7","loss":"6"},"2015":{"win":"9","loss":"4"},"2016":{"win":"6","loss":"7"},"2017":{"win":"10","loss":"3"},"2018":{"win":"6","loss":"7"},"2019":{"win":"5","loss":"8"},"2020":{"win":"7","loss":"6"},"2021":{"win":"6","loss":"8"},"2022":{"win":"2","loss":"12"},"2023":{"win":"10","loss":"4"},"2024":{"win":"6","loss":"8"},"2025":{"win":"6","loss":"8"}}},{"status":"Active","name":"Ryan Bogan","seasons":{"2013":{"win":"3","loss":"10"},"2014":{"win":"9","loss":"4"},"2015":{"win":"10","loss":"3"},"2016":{"win":"7","loss":"6"},"2017":{"win":"8","loss":"5"},"2018":{"win":"7","loss":"6"},"2019":{"win":"5","loss":"8"},"2020":{"win":"9","loss":"4"},"2021":{"win":"12","loss":"2"},"2022":{"win":"8","loss":"6"},"2023":{"win":"7","loss":"7"},"2024":{"win":"7","loss":"7"},"2025":{"win":"9","loss":"5"}}},{"status":"Active","name":"Alex Decaudin","seasons":{"2015":{"win":"6","loss":"7"},"2016":{"win":"6","loss":"7"},"2017":{"win":"9","loss":"4"},"2018":{"win":"7","loss":"6"},"2019":{"win":"6","loss":"7"},"2020":{"win":"7","loss":"6"},"2021":{"win":"4","loss":"10"},"2022":{"win":"11","loss":"3"},"2023":{"win":"7","loss":"7"},"2024":{"win":"6","loss":"8"},"2025":{"win":"6","loss":"8"}}},{"status":"Active","name":"Rich Christensen","seasons":{"2013":{"win":"5","loss":"8"},"2014":{"win":"8","loss":"5"},"2015":{"win":"7","loss":"6"},"2016":{"win":"6","loss":"7"},"2017":{"win":"8","loss":"5"},"2018":{"win":"7","loss":"6"},"2019":{"win":"6","loss":"7"},"2020":{"win":"4","loss":"9"},"2021":{"win":"10","loss":"4"},"2022":{"win":"11","loss":"3"},"2023":{"win":"8","loss":"6"},"2024":{"win":"9","loss":"5"},"2025":{"win":"5","loss":"9"}}},{"status":"Active","name":"Alec Christensen","seasons":{"2013":{"win":"9","loss":"4"},"2014":{"win":"4","loss":"9"},"2015":{"win":"2","loss":"11"},"2016":{"win":"6","loss":"7"},"2017":{"win":"7","loss":"6"},"2018":{"win":"4","loss":"9"},"2019":{"win":"4","loss":"9"},"2020":{"win":"9","loss":"4"},"2021":{"win":"5","loss":"9"},"2022":{"win":"5","loss":"9"},"2023":{"win":"5","loss":"9"},"2024":{"win":"6","loss":"8"},"2025":{"win":"8","loss":"6"}}},{"status":"Active","name":"Jay Jennings","seasons":{"2017":{"win":"4","loss":"9"},"2018":{"win":"7","loss":"6"},"2019":{"win":"6","loss":"7"},"2020":{"win":"5","loss":"8"},"2021":{"win":"6","loss":"8"},"2022":{"win":"4","loss":"10"},"2023":{"win":"6","loss":"8"},"2024":{"win":"10","loss":"4"},"2025":{"win":"8","loss":"6"}}},{"status":"Active","name":"Corey Potts","seasons":{"2023":{"win":"6","loss":"8"},"2024":{"win":"6","loss":"8"},"2025":{"win":"4","loss":"10"}}},{"status":"Active","name":"Jacob Salathe","seasons":{"2024":{"win":"3","loss":"11"},"2025":{"win":"10","loss":"4"}}},{"status":"Active","name":"Jon Latzke","seasons":{"2025":{"win":"7","loss":"7"}}},{"status":"Retired","name":"Branden Irvin","seasons":{"2013":{"win":"4","loss":"9"},"2014":{"win":"5","loss":"8"},"2015":{"win":"4","loss":"9"},"2017":{"win":"3","loss":"10"},"2018":{"win":"10","loss":"3"},"2019":{"win":"6","loss":"7"},"2020":{"win":"7","loss":"6"},"2021":{"win":"5","loss":"9"},"2022":{"win":"9","loss":"5"},"2023":{"win":"11","loss":"3"},"2024":{"win":"6","loss":"8"}}},{"status":"Retired","name":"Nathan Bogan","seasons":{"2014":{"win":"8","loss":"5"},"2016":{"win":"9","loss":"4"},"2017":{"win":"5","loss":"8"},"2018":{"win":"5","loss":"8"},"2019":{"win":"8","loss":"5"},"2020":{"win":"10","loss":"3"},"2021":{"win":"5","loss":"9"},"2022":{"win":"6","loss":"8"}}},{"status":"Retired","name":"Robert Bogan","seasons":{"2013":{"win":"9","loss":"4"}}},{"status":"Retired","name":"Rob Clark","seasons":{"2016":{"win":"8","loss":"5"},"2017":{"win":"5","loss":"8"},"2018":{"win":"9","loss":"4"}}},{"status":"Retired","name":"Christian Morrison","seasons":{"2015":{"win":"7","loss":"6"},"2016":{"win":"8","loss":"5"}}},{"status":"Retired","name":"Josh Petriko","seasons":{"2019":{"win":"11","loss":"2"},"2020":{"win":"6","loss":"7"},"2021":{"win":"6","loss":"8"},"2022":{"win":"7","loss":"7"}}},{"status":"Retired","name":"Kyle Sanchez","seasons":{"2013":{"win":"7","loss":"6"},"2015":{"win":"5","loss":"8"}}},{"status":"Retired","name":"Tyler Stutson","seasons":{"2013":{"win":"7","loss":"6"},"2014":{"win":"6","loss":"7"},"2015":{"win":"7","loss":"6"}}},{"status":"Retired","name":"Kelly Williams","seasons":{"2016":{"win":"2","loss":"11"}}},{"status":"Retired","name":"Andy","seasons":{"2023":{"win":"4","loss":"10"}}},{"status":"Retired","name":"Mick","seasons":{"2013":{"win":"6","loss":"7"}}},{"status":"Retired","name":"Mo (co-owner with Jon 2013)","seasons":{"2014":{"win":"8","loss":"5"}}},{"status":"Retired","name":"Slim","seasons":{"2013":{"win":"9","loss":"4"}}},{"status":"Retired","name":"Jake","seasons":{"2013":{"win":"6","loss":"7"}}},{"status":"Retired","name":"Wyatt","seasons":{"2014":{"win":"6","loss":"7"}}},{"status":"Retired","name":"Paul","seasons":{"2015":{"win":"5","loss":"8"}}},{"status":"Retired","name":"Brandon","seasons":{"2015":{"win":"6","loss":"7"}}}];
-
-// Parsed from goatChampionships.csv
-const CHAMPS_DATA = [
-  { name: "Caleb Christensen",  championships: ["2013","2016","2017","2021"], scoringTitles: ["2024"] },
-  { name: "Jon Steele",         championships: ["2015","2023","2024"],        scoringTitles: ["2014","2015","2017"] },
-  { name: "Ryan Bogan",         championships: ["2014","2025"],               scoringTitles: ["2016","2020","2021","2025"] },
-  { name: "Alex Decaudin",      championships: ["2020"],                      scoringTitles: [] },
-  { name: "Rich Christensen",   championships: [],                            scoringTitles: ["2022"] },
-  { name: "Alec Christensen",   championships: [],                            scoringTitles: ["2013"] },
-  { name: "Branden Irvin",      championships: ["2018","2019"],               scoringTitles: ["2018","2023"] },
-  { name: "Josh Petriko",       championships: ["2022"],                      scoringTitles: ["2019"] },
-  { name: "Kyle Sanchez",       championships: ["2012"],                      scoringTitles: [] },
-];
-
+let pointsData = [];
+let recordsData = [];
+let champsData = [];
 const keepersData = [];
 const keeperPhotoCache = {};
 const recordStatus = {};
+
+function parseCsvList(value) {
+  if (!value) return [];
+  return value.split(',').map(item => item.trim()).filter(Boolean);
+}
+
+function parseYearsFromCsvHeader(header) {
+  const years = [];
+  for (let i = 2; i < header.length; i += 2) {
+    if (header[i]) years.push(header[i]);
+  }
+  return years;
+}
+
+function syncAllYears(years) {
+  if (!years.length) return;
+  const uniqueYears = [...new Set(years)];
+  if (!allYears.length || uniqueYears.some((year, index) => allYears[index] !== year)) {
+    allYears = uniqueYears;
+  }
+}
+
+function getSeasonRangeText() {
+  const startYear = allYears.length ? parseInt(allYears[0], 10) : null;
+  const endYear = new Date().getFullYear();
+  if (!startYear) return '—';
+  return `${startYear} – ${endYear}`;
+}
+
+function getSeasonCount() {
+  const startYear = allYears.length ? parseInt(allYears[0], 10) : null;
+  if (!startYear) return 0;
+  return new Date().getFullYear() - startYear + 1;
+}
+
+async function loadPointsData() {
+  try {
+    const response = await fetch('goatPoints.csv');
+    if (!response.ok) throw new Error('Could not load goatPoints.csv');
+    const text = await response.text();
+    const lines = text.split(/\r?\n/).filter(Boolean);
+    const yearHeader = parseCsvLine(lines[0]);
+    const years = parseYearsFromCsvHeader(yearHeader);
+    syncAllYears(years);
+
+    pointsData = lines.slice(2).map(line => {
+      const row = parseCsvLine(line);
+      if (!row[1]) return null;
+      const status = row[0].trim();
+      const name = row[1].trim().replace(/^"|"$/g, '');
+      const seasons = {};
+      years.forEach((year, index) => {
+        const forIndex = 2 + (index * 2);
+        const againstIndex = forIndex + 1;
+        const forValue = row[forIndex] || '';
+        const againstValue = row[againstIndex] || '';
+        if (forValue || againstValue) {
+          seasons[year] = { for: forValue, against: againstValue };
+        }
+      });
+      return { status, name, seasons };
+    }).filter(Boolean);
+  } catch (error) {
+    console.warn('Points data unavailable:', error);
+    pointsData = [];
+  }
+}
+
+async function loadRecordsData() {
+  try {
+    const response = await fetch('goatRecords.csv');
+    if (!response.ok) throw new Error('Could not load goatRecords.csv');
+    const text = await response.text();
+    const lines = text.split(/\r?\n/).filter(Boolean);
+    const yearHeader = parseCsvLine(lines[0]);
+    const years = parseYearsFromCsvHeader(yearHeader);
+    syncAllYears(years);
+
+    recordsData = lines.slice(2).map(line => {
+      const row = parseCsvLine(line);
+      if (!row[1]) return null;
+      const status = row[0].trim();
+      const name = row[1].trim().replace(/^"|"$/g, '');
+      // populate recordStatus map so other code can rely on it without a second fetch
+      if (name) recordStatus[name] = status;
+      const seasons = {};
+      years.forEach((year, index) => {
+        const winIndex = 2 + (index * 2);
+        const lossIndex = winIndex + 1;
+        const winValue = row[winIndex] || '';
+        const lossValue = row[lossIndex] || '';
+        if (winValue || lossValue) {
+          seasons[year] = { win: winValue, loss: lossValue };
+        }
+      });
+      return { status, name, seasons };
+    }).filter(Boolean);
+  } catch (error) {
+    console.warn('Records data unavailable:', error);
+    recordsData = [];
+  }
+}
+
+async function loadChampsData() {
+  try {
+    const response = await fetch('goatChampionships.csv');
+    if (!response.ok) throw new Error('Could not load goatChampionships.csv');
+    const text = await response.text();
+    const lines = text.split(/\r?\n/).filter(Boolean);
+    champsData = lines.slice(1).map(line => {
+      const row = parseCsvLine(line);
+      if (!row[2]) return null;
+      return {
+        name: row[2].trim().replace(/^"|"$/g, ''),
+        championships: parseCsvList(row[0]),
+        scoringTitles: parseCsvList(row[1])
+      };
+    }).filter(Boolean);
+  } catch (error) {
+    console.warn('Championship data unavailable:', error);
+    champsData = [];
+  }
+}
+
+function getActiveOwnersFromCsvs() {
+  const ownerNames = new Set();
+  [pointsData, recordsData].forEach(source => {
+    source.forEach(row => {
+      if (row && row.status === 'Active' && row.name) {
+        ownerNames.add(row.name);
+      }
+    });
+  });
+  return [...ownerNames];
+}
+
+function getJoinYear(name) {
+  const owner = keepersData.find(item => item.owner === name);
+  return owner?.yearJoined || '';
+}
+
+function updateLeagueHeader() {
+  const subtitle = document.querySelector('.league-sub');
+  if (!subtitle) return;
+  subtitle.textContent = `All-Time League History • ${getSeasonRangeText()}`;
+}
+
+function updateChampsBanner() {
+  const count = champsData.length;
+  const seasonCount = getSeasonCount();
+  const rangeText = getSeasonRangeText();
+  document.getElementById('champs-banner').innerHTML =
+    `<span class="banner-stat banner-seasons"><span class="banner-val">${seasonCount}</span><span class="banner-label">Seasons</span></span>` +
+    `<span class="banner-sep">·</span>` +
+    `<span class="banner-stat"><span class="banner-val">${rangeText}</span></span>` +
+    `<span class="banner-sep">·</span>` +
+    `<span class="banner-stat"><span class="banner-val">${count}</span><span class="banner-label">Honored</span></span>`;
+}
 
 async function loadKeepers() {
   try {
@@ -145,23 +289,7 @@ function parseCsvLine(line) {
   return values;
 }
 
-async function loadRecordStatus() {
-  try {
-    const response = await fetch('goatRecords.csv');
-    if (!response.ok) throw new Error('Could not load goatRecords.csv');
-    const text = await response.text();
-    const lines = text.split(/\r?\n/).filter(Boolean);
-    for (let i = 2; i < lines.length; i += 1) {
-      const row = parseCsvLine(lines[i]);
-      if (row.length < 2) continue;
-      const status = row[0].trim();
-      const name = row[1].trim().replace(/^"|"$/g, '');
-      if (name) recordStatus[name] = status;
-    }
-  } catch (error) {
-    console.warn('Record status unavailable:', error);
-  }
-}
+// recordStatus is now populated by `loadRecordsData()` during parsing; no separate fetch required.
 
 async function loadKeeperPhotoUrl(name) {
   if (keeperPhotoCache[name] !== undefined) return keeperPhotoCache[name];
@@ -284,21 +412,11 @@ function getKeeperFallbackUrl() {
 
 // ── STATE ──
 let currentView = 'champs';
-let showRetired = false;
+let showRetired = true;
 
 // ── INIT YEAR FILTER ──
 const yearSelect = document.getElementById('yearFilter');
-ALL_YEARS.forEach(y => {
-  const opt = document.createElement('option');
-  opt.value = y; opt.textContent = y;
-  yearSelect.appendChild(opt);
-});
-document.getElementById('champs-banner').innerHTML =
-  `<span class="banner-stat"><span class="banner-val">${ALL_YEARS.length}</span><span class="banner-label">Seasons</span></span>` +
-  `<span class="banner-sep">·</span>` +
-  `<span class="banner-stat"><span class="banner-val">${ALL_YEARS[0]} – ${ALL_YEARS[ALL_YEARS.length - 1]}</span></span>` +
-  `<span class="banner-sep">·</span>` +
-  `<span class="banner-stat"><span class="banner-val">${CHAMPS_DATA.length}</span><span class="banner-label">Honored</span></span>`;
+updateChampsBanner();
 
 function switchView(view, btn) {
   currentView = view;
@@ -321,23 +439,41 @@ function applyRetiredVisibility() {
   });
 }
 
-function toggleRetired() {
-  showRetired = !showRetired;
+function syncRetiredButtonState() {
   const btn = document.getElementById('retiredToggle');
+  if (!btn) return;
   btn.textContent = showRetired ? 'Hide Retired' : 'Show Retired';
   btn.classList.toggle('on', showRetired);
+}
+
+function toggleRetired() {
+  showRetired = !showRetired;
+  syncRetiredButtonState();
   applyRetiredVisibility();
 }
 
 function getSelectedYears() {
   const v = yearSelect.value;
-  return v === 'all' ? ALL_YEARS : [v];
+  if (v === 'current') {
+    const latestYear = allYears.length ? allYears[allYears.length - 1] : new Date().getFullYear().toString();
+    return [latestYear];
+  }
+  return v === 'all' ? (allYears.length ? allYears : []) : [v];
+}
+
+function shouldRenderPlayer(player, years) {
+  if (player.status === 'Retired') return true;
+  if (yearSelect.value === 'current') return true;
+  const hasData = years.some(y => player.seasons[y]);
+  if (!hasData && years.length < allYears.length) return false;
+  return true;
 }
 
 // ── RENDER POINTS TABLE ──
 function renderPoints() {
   const years = getSelectedYears();
-  const data = POINTS_DATA;
+  const displayYears = years.map(y => ({ value: y, label: yearSelect.value === 'current' ? 'Current' : y }));
+  const data = pointsData;
   const table = document.getElementById('points-table');
   table.innerHTML = '';
 
@@ -348,10 +484,10 @@ function renderPoints() {
   const yearRow = document.createElement('tr');
   yearRow.className = 'year-row';
   yearRow.innerHTML = `<th></th><th>Player</th>`;
-  years.forEach(y => {
+  displayYears.forEach(({ label }) => {
     const th = document.createElement('th');
     th.colSpan = 2;
-    th.textContent = y;
+    th.textContent = label;
     yearRow.appendChild(th);
   });
   // Totals header
@@ -367,7 +503,7 @@ function renderPoints() {
   const subRow = document.createElement('tr');
   subRow.className = 'sub-row';
   subRow.innerHTML = `<th></th><th class="name-col">Name</th>`;
-  years.forEach(() => {
+  displayYears.forEach(() => {
     subRow.innerHTML += `<th>PF</th><th>PA</th>`;
   });
   subRow.innerHTML += `<th class="totals-spacer" style="color:var(--gold)">PF</th><th style="color:var(--muted)">PA</th>`;
@@ -377,9 +513,7 @@ function renderPoints() {
   // Body
   const tbody = document.createElement('tbody');
   data.forEach(player => {
-    // Only show if they have data in selected years
-    const hasData = years.some(y => player.seasons[y]);
-    if (!hasData && years.length < ALL_YEARS.length) return;
+    if (!shouldRenderPlayer(player, years)) return;
 
     const tr = document.createElement('tr');
     if (player.status === 'Retired') tr.classList.add('retired-row');
@@ -390,8 +524,8 @@ function renderPoints() {
     let html = `<td class="status-cell"><span class="status-dot ${player.status === 'Retired' ? 'retired' : ''}"></span></td>`;
     html += `<td class="name-cell">${player.name}</td>`;
 
-    years.forEach(y => {
-      const s = player.seasons[y];
+    displayYears.forEach(({ value }) => {
+      const s = player.seasons[value];
       if (s) {
         totalFor += parseFloat(s.for) || 0;
         totalAgainst += parseFloat(s.against) || 0;
@@ -416,7 +550,8 @@ function renderPoints() {
 // ── RENDER RECORDS TABLE ──
 function renderRecords() {
   const years = getSelectedYears();
-  const data = RECORDS_DATA;
+  const displayYears = years.map(y => ({ value: y, label: yearSelect.value === 'current' ? 'Current' : y }));
+  const data = recordsData;
   const table = document.getElementById('records-table');
   table.innerHTML = '';
 
@@ -426,10 +561,10 @@ function renderRecords() {
   const yearRow = document.createElement('tr');
   yearRow.className = 'year-row';
   yearRow.innerHTML = `<th></th><th>Player</th>`;
-  years.forEach(y => {
+  displayYears.forEach(({ label }) => {
     const th = document.createElement('th');
     th.colSpan = 2;
-    th.textContent = y;
+    th.textContent = label;
     yearRow.appendChild(th);
   });
   const totTh = document.createElement('th');
@@ -439,22 +574,33 @@ function renderRecords() {
   totTh.style.cssText = 'color:var(--gold);font-family:"Bebas Neue",sans-serif;font-size:1rem;letter-spacing:2px;text-align:center;';
   yearRow.appendChild(totTh);
   thead.appendChild(yearRow);
-
-  // Sub row
+  // Sub row (column labels)
   const subRow = document.createElement('tr');
   subRow.className = 'sub-row';
   subRow.innerHTML = `<th></th><th class="name-col">Name</th>`;
-  years.forEach(() => {
+  displayYears.forEach(() => {
     subRow.innerHTML += `<th>W</th><th>L</th>`;
   });
-  subRow.innerHTML += `<th class="totals-spacer" style="color:var(--green)">W</th><th style="color:#f87171">L</th><th style="color:var(--gold)">Win%</th>`;
+  subRow.innerHTML += `<th class="totals-spacer" style="color:var(--gold)">W</th><th style="color:#f87171">L</th><th style="color:var(--gold)">Win%</th>`;
   thead.appendChild(subRow);
   table.appendChild(thead);
 
+  // Helper: compute career win/loss and percent
+  function careerRecord(player) {
+    let totalW = 0, totalL = 0;
+    for (const y in player.seasons) {
+      const s = player.seasons[y];
+      if (!s) continue;
+      if (s.win) totalW += parseInt(s.win) || 0;
+      if (s.loss) totalL += parseInt(s.loss) || 0;
+    }
+    const pct = totalW + totalL > 0 ? ((totalW / (totalW + totalL)) * 100) : null;
+    return { totalW, totalL, pct };
+  }
+
   const tbody = document.createElement('tbody');
   data.forEach(player => {
-    const hasData = years.some(y => player.seasons[y]);
-    if (!hasData && years.length < ALL_YEARS.length) return;
+    if (!shouldRenderPlayer(player, years)) return;
 
     const tr = document.createElement('tr');
     if (player.status === 'Retired') tr.classList.add('retired-row');
@@ -464,8 +610,8 @@ function renderRecords() {
     let html = `<td class="status-cell"><span class="status-dot ${player.status === 'Retired' ? 'retired' : ''}"></span></td>`;
     html += `<td class="name-cell">${player.name}</td>`;
 
-    years.forEach(y => {
-      const s = player.seasons[y];
+    displayYears.forEach(({ value }) => {
+      const s = player.seasons[value];
       if (s) {
         totalW += parseInt(s.win) || 0;
         totalL += parseInt(s.loss) || 0;
@@ -475,10 +621,11 @@ function renderRecords() {
       }
     });
 
-    const pct = totalW + totalL > 0 ? ((totalW / (totalW + totalL)) * 100).toFixed(1) : '—';
-    html += `<td class="total-w totals-spacer">${totalW}</td>`;
-    html += `<td class="total-l">${totalL}</td>`;
-    html += `<td class="total-pts">${pct !== '—' ? pct + '%' : '—'}</td>`;
+    const career = careerRecord(player);
+    const pctText = career.pct !== null ? career.pct.toFixed(1) + '%' : '—';
+    html += `<td class="total-w totals-spacer">${career.totalW}</td>`;
+    html += `<td class="total-l">${career.totalL}</td>`;
+    html += `<td class="total-pts">${pctText}</td>`;
 
     tr.innerHTML = html;
     tbody.appendChild(tr);
@@ -487,87 +634,116 @@ function renderRecords() {
   applyRetiredVisibility();
 }
 
-// ── RENDER CHAMPS ──
-function renderChamps() {
-  const grid = document.getElementById('champs-grid');
-  grid.innerHTML = '';
+// Render Championships grid
+  function renderChamps() {
+    const grid = document.getElementById('champs-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
 
-  // Sort: active owners first, then most championships, then scoring titles
-  const sorted = [...CHAMPS_DATA].sort((a, b) => {
-    const aActive = recordStatus[a.name] === 'Active' || a.status === 'Active';
-    const bActive = recordStatus[b.name] === 'Active' || b.status === 'Active';
-    if (aActive !== bActive) return aActive ? -1 : 1;
-    return (
-      (b.championships.length - a.championships.length) ||
-      (b.scoringTitles.length - a.scoringTitles.length)
-    );
-  });
+    // Build a player list that includes honored players plus any active owners missing honors
+    const honored = champsData.map(p => ({
+      name: p.name,
+      championships: p.championships || [],
+      scoringTitles: p.scoringTitles || [],
+      status: recordStatus[p.name] || 'Retired'
+    }));
 
-  sorted.forEach(player => {
-    const card = document.createElement('div');
-    const inMemoriam = player.name === 'Branden Irvin';
-    const activeStatus = recordStatus[player.name] === 'Active' || player.status === 'Active';
-    card.className = 'champ-card' + (inMemoriam ? ' in-memoriam' : '') + (activeStatus ? ' active' : '');
-
-    const honorMark = inMemoriam
-      ? `<div class="champ-honor-mark bottom">
-           <span class="honor-icon">🕯️</span>
-           <span class="honor-label">Legend</span>
-         </div>`
-      : '';
-    const trophyCount = (player.championships || []).length || 0;
-    const medalCount = (player.scoringTitles || []).length || 0;
-    const nameLine = `<div class="champ-header"><div class="champ-card-name"><span class="champ-name-text">${player.name}</span></div><div class="champ-meta"><span class="champ-trophy" aria-hidden="true"><span class="icon">🏆</span><span class="count">${trophyCount}</span></span><span class="champ-medal" aria-hidden="true"><span class="icon">🎖️</span><span class="count">${medalCount}</span></span></div></div>`;
-
-    const champBadges = player.championships.sort().map(y =>
-      `<span class="champ-badge championship">🏆 ${y}</span>`
-    ).join('');
-
-    const scoreBadges = player.scoringTitles.sort().map(y =>
-      `<span class="champ-badge scoring">🎖️ ${y}</span>`
-    ).join('');
-
-    const badgeSection = (champBadges || scoreBadges)
-      ? `<div class="champ-badge-row">${champBadges}${scoreBadges}</div>`
-      : `<div class="champ-empty">No titles yet</div>`;
-
-    const keeperInfo = keepersData.find(k => k.owner === player.name) || { keepers: [], team: '' };
-    const ownerTeamLine = keeperInfo.team ? `<div class="owner-team">${keeperInfo.team}</div>` : '';
-    const keeperItems = keeperInfo.keepers.slice(0, 3).map(keeper => {
-      const keeperTeamLine = keeper.team ? `<div class="keeper-team">${keeper.team}</div>` : '';
-      return `
-      <div class="keeper-item" tabindex="0" title="${keeper.name}">
-        ${keeperTeamLine}
-        <div class="keeper-photo">
-          <img src="${getKeeperPhotoUrlWithCustom(keeper)}" alt="Keeper photo for ${keeper.name}" loading="lazy"
-               onerror="handleKeeperPhotoError(this, '${keeper.name}');" />
-          <div class="keeper-year">${keeper.firstKeptYear}</div>
-        </div>
-        <div class="keeper-name">${keeper.name}</div>
-      </div>
-    `;
+    const activeNames = getActiveOwnersFromCsvs();
+    activeNames.forEach(n => {
+      if (!honored.find(h => h.name === n)) {
+        honored.push({ name: n, championships: [], scoringTitles: [], status: 'Active' });
+      }
     });
 
-    while (keeperItems.length < 3) {
-      keeperItems.push(`
-        <div class="keeper-item" tabindex="0" title="None">
-          <div class="keeper-photo keeper-photo-empty">
-            <span class="keeper-placeholder">—</span>
+    const sorted = honored.sort((a, b) => {
+      const aActive = (recordStatus[a.name] === 'Active') || a.status === 'Active';
+      const bActive = (recordStatus[b.name] === 'Active') || b.status === 'Active';
+      if (aActive !== bActive) return aActive ? -1 : 1;
+      const diff = (b.championships.length - a.championships.length) || (b.scoringTitles.length - a.scoringTitles.length);
+      if (diff !== 0) return diff;
+      return a.name.localeCompare(b.name);
+    });
+
+    sorted.forEach(player => {
+      const card = document.createElement('div');
+      const inMemoriam = player.name === 'Branden Irvin';
+      const activeStatus = recordStatus[player.name] === 'Active' || player.status === 'Active';
+      card.className = 'champ-card' + (inMemoriam ? ' in-memoriam' : '') + (activeStatus ? ' active' : '');
+
+      const honorMark = inMemoriam
+        ? `<div class="champ-honor-mark bottom"><span class="honor-icon">🕯️</span><span class="honor-label">Legend</span></div>`
+        : '';
+      const trophyCount = (player.championships || []).length || 0;
+      const medalCount = (player.scoringTitles || []).length || 0;
+      const joinYear = getJoinYear(player.name);
+      const joinLabel = joinYear === '2013' ? 'Founder' : joinYear ? `Joined ${joinYear}` : '';
+      const joinLine = joinLabel ? `<div class="champ-join-year">${joinLabel}</div>` : '';
+      const nameLine = `<div class="champ-header"><div class="champ-card-name"><span class="champ-name-text">${player.name}</span></div><div class="champ-meta"><div class="champ-counts"><span class="champ-trophy" aria-hidden="true"><span class="icon">🏆</span><span class="count">${trophyCount}</span></span><span class="champ-medal" aria-hidden="true"><span class="icon">🎖️</span><span class="count">${medalCount}</span></span></div>${joinLine}</div></div>`;
+
+      const champBadges = (player.championships || []).slice().sort().map(y => `<span class="champ-badge championship">🏆 ${y}</span>`).join('');
+      const scoreBadges = (player.scoringTitles || []).slice().sort().map(y => `<span class="champ-badge scoring">🎖️ ${y}</span>`).join('');
+
+      const badgeSection = (champBadges || scoreBadges)
+        ? `<div class="champ-badge-row">${champBadges}${scoreBadges}</div>`
+        : `<div class="champ-empty">No titles yet</div>`;
+
+      const keeperInfo = keepersData.find(k => k.owner === player.name) || { keepers: [], team: '' };
+      const ownerTeamLine = keeperInfo.team ? `<div class="owner-team">${keeperInfo.team}</div>` : '';
+      const keeperItems = keeperInfo.keepers.slice(0, 3).map(keeper => {
+        const keeperTeamLine = keeper.team ? `<div class="keeper-team">${keeper.team}</div>` : '';
+        return `
+        <div class="keeper-item" tabindex="0" title="${keeper.name}">
+          ${keeperTeamLine}
+          <div class="keeper-photo">
+            <img src="${getKeeperPhotoUrlWithCustom(keeper)}" alt="Keeper photo for ${keeper.name}" loading="lazy" onerror="handleKeeperPhotoError(this, '${keeper.name}');" />
           </div>
-          <div class="keeper-name">None</div>
+          <div class="keeper-name">${keeper.name}</div>
         </div>
-      `);
-    }
+      `;
+      });
 
-    const keeperSection = `<div class="keeper-strip">${keeperItems.join('')}</div>`;
+      while (keeperItems.length < 3) {
+        keeperItems.push(`
+          <div class="keeper-item" tabindex="0" title="None">
+            <div class="keeper-photo keeper-photo-empty"><span class="keeper-placeholder">—</span></div>
+            <div class="keeper-name">None</div>
+          </div>
+        `);
+      }
 
-    card.innerHTML = honorMark + nameLine + badgeSection + ownerTeamLine + keeperSection;
-    grid.appendChild(card);
-  });
-}
+      const keeperSection = `<div class="keeper-strip">${keeperItems.join('')}</div>`;
+
+      card.innerHTML = honorMark + nameLine + badgeSection + ownerTeamLine + keeperSection;
+      grid.appendChild(card);
+    });
+  }
 
 async function init() {
-  await Promise.all([loadKeepers(), loadRecordStatus()]);
+  await Promise.all([loadKeepers(), loadPointsData(), loadRecordsData(), loadChampsData()]);
+  syncRetiredButtonState();
+  applyRetiredVisibility();
+  if (allYears.length) {
+    yearSelect.innerHTML = '';
+    const allOption = document.createElement('option');
+    allOption.value = 'all';
+    allOption.textContent = 'All Years';
+    yearSelect.appendChild(allOption);
+
+    const currentOption = document.createElement('option');
+    currentOption.value = 'current';
+    currentOption.textContent = 'Current';
+    yearSelect.appendChild(currentOption);
+
+    allYears.forEach(y => {
+      const opt = document.createElement('option');
+      opt.value = y; opt.textContent = y;
+      yearSelect.appendChild(opt);
+    });
+
+    yearSelect.value = 'current';
+  }
+  updateLeagueHeader();
+  updateChampsBanner();
   render();
 }
 

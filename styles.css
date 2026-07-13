@@ -129,6 +129,16 @@ header::after {
   padding: 8px 24px;
 }
 .banner-stat { display: flex; align-items: baseline; gap: 6px; }
+.banner-stat.banner-seasons {
+  align-items: center;
+  gap: 8px;
+}
+.banner-stat.banner-seasons .banner-val {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+}
 .banner-val {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.05rem;
@@ -336,11 +346,11 @@ th.totals-spacer { background: rgba(59,130,246,0.04); border-left: 1px solid var
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 18px 22px 12px;
+  padding: 16px 20px 14px;
   box-shadow: 0 8px 40px rgba(0,0,0,0.45);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   position: relative;
   min-height: 380px;
 }
@@ -420,21 +430,23 @@ th.totals-spacer { background: rgba(59,130,246,0.04); border-left: 1px solid var
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
-  min-height: 2.6rem;
 }
 .champ-card-name {
   font-weight: 700;
   font-size: 1rem;
   color: var(--text);
   display: block;
-  line-height: 1.15;
-  min-height: 2.3rem;
-  max-height: 2.3rem;
-  overflow: hidden;
+  line-height: 1.25;
+}
+.champ-join-year {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.6px;
 }
 .champ-card-name .champ-name-text {
   display: block;
-  max-height: 2.3rem;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
@@ -444,6 +456,12 @@ th.totals-spacer { background: rgba(59,130,246,0.04); border-left: 1px solid var
   -webkit-line-clamp: 2;
 }
 .champ-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.champ-counts {
   display: flex;
   gap: 8px;
   align-items: center;

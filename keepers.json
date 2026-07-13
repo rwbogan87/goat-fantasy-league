@@ -1,68 +1,98 @@
 [
   {
     "owner": "Caleb Christensen",
+    "yearJoined": "2013",
     "team": "The Empire",
     "keepers": [
-      { "name": "Jahmyr Gibbs", "firstKeptYear": "", "photoUrl": "Gibbs.jpg" },
-      { "name": "Justin Jefferson", "firstKeptYear": "" }
+      { "name": "Jahmyr Gibbs", "photoUrl": "Gibbs.jpg" },
+      { "name": "Justin Jefferson" },
+       { "name": "Tyler Warren" }
     ]
   },
   { 
     "owner": "Jon Steele",
+    "yearJoined": "2013",
     "team": "The Backdoor Covers",
     "keepers": [
-      { "name": "Brock Bowers", "firstKeptYear": "" },
-      { "name": "CeeDee Lamb", "firstKeptYear": "" },
-      { "name": "Tetairoa McMillan", "firstKeptYear": "" }
+      { "name": "Brock Bowers" },
+      { "name": "CeeDee Lamb" },
+      { "name": "Tetairoa McMillan" }
     ]
   },
   {
     "owner": "Ryan Bogan",
+    "yearJoined": "2013",
     "team": "War Daddies",
     "keepers": [
-      { "name": "Ja'Marr Chase", "firstKeptYear": "" },
-      { "name": "Jaxon Smith-Njigba", "firstKeptYear": "" },
-      { "name": "Puka Nacua", "firstKeptYear": "" }
+      { "name": "Ja'Marr Chase" },
+      { "name": "Jaxon Smith-Njigba" },
+      { "name": "Puka Nacua" }
+    ]
+  },
+   {
+    "owner": "Jay Jennings",
+    "yearJoined": "2017",
+    "team": "THEE Worthy's Originals",
+    "keepers": [
+      { "name": "Bijan Robinson" }
+    ]
+  },
+   {
+    "owner": "Jacob Salathe",
+    "yearJoined": "2024",
+    "team": "Taco Libre",
+    "keepers": [
+    ]
+  },
+   {
+    "owner": "Jon Latzke",
+    "yearJoined": "2025",
+    "team": "My Dog Says Hi",
+    "keepers": [
+    ]
+  },
+     {
+    "owner": "Jeremy",
+    "yearJoined": "2026",
+    "team": "Team Name",
+    "keepers": [
     ]
   },
   {
     "owner": "Branden Irvin",
+    "yearJoined": "2014",
     "team": "Retired",
     "keepers": []
   },
   {
     "owner": "Alex Decaudin",
+    "yearJoined": "2015",
     "team": "Pete Davidson's Father",
     "keepers": [
-      { "name": "Ashton Jeanty", "firstKeptYear": "" },
-      { "name": "Marvin Harrison Jr.", "firstKeptYear": "" }
     ]
   },
   {
     "owner": "Rich Christensen",
+    "yearJoined": "2013",
     "team": "Trust Me I'm a Doctor",
-    "keepers": [
-      { "name": "Amon-Ra St. Brown", "firstKeptYear": "" }, 
-      { "name": "Rashee Rice", "firstKeptYear": "" } ,
-      { "name": "Derrick Henry", "firstKeptYear": "" } 
-    ]
+    "keepers": []
   },
   {
     "owner": "Alec Christensen",
+    "yearJoined": "2013",
     "team": "Egbukkake",
     "keepers": [
-      { "name": "Jonathan Taylor", "firstKeptYear": "" }, 
-      { "name": "Trey Mcbride", "firstKeptYear": "" },
-      { "name": "Emeka Egbuka", "firstKeptYear": "" }
     ]
   },
   {
     "owner": "Josh Petriko",
+    "yearJoined": "2019",
     "team": "Retired",
     "keepers": []
   },
   {
     "owner": "Kyle Sanchez",
+    "yearJoined": "2012",
     "team": "Retired",
     "keepers": []
   }
