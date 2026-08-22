@@ -42,6 +42,8 @@
     "yearJoined": "2024",
     "team": "Taco Libre",
     "keepers": [
+        { "name": "Saquon Barkley" },
+        { "name": "Jake Bates" } 
     ]
   },
    {
@@ -49,6 +51,7 @@
     "yearJoined": "2025",
     "team": "My Dog Says Hi",
     "keepers": [
+        { "name": "Jordan Love" }
     ]
   },
      {
