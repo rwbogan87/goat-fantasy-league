@@ -14,8 +14,8 @@
     "yearJoined": "2013",
     "team": "The Backdoor Covers",
     "keepers": [
+      { "name": "Christian McCaffrey" },
       { "name": "Brock Bowers" },
-      { "name": "CeeDee Lamb" },
       { "name": "Tetairoa McMillan" }
     ]
   },
@@ -59,6 +59,9 @@
     "yearJoined": "2026",
     "team": "Team Name",
     "keepers": [
+      { "name": "Lamar Jackson" },
+      { "name": "Drake London" },
+      { "name": "Chase Brown" }
     ]
   },
   {
@@ -78,13 +81,19 @@
     "owner": "Rich Christensen",
     "yearJoined": "2013",
     "team": "Trust Me I'm a Doctor",
-    "keepers": []
+    "keepers": [
+      { "name": "Amon-Ra St. Brown" },
+      { "name": "Derrick Henry" },
+      { "name": "Rashee Rice" }
+    ]
   },
   {
     "owner": "Alec Christensen",
     "yearJoined": "2013",
     "team": "Egbukkake",
     "keepers": [
+        { "name": "Jonathan Taylor" },
+        { "name": "Trey McBride" }
     ]
   },
   {
